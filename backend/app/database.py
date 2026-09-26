@@ -5,7 +5,7 @@ from sqlalchemy.orm import declarative_base, sessionmaker
 # 1. Database Connection URL
 DATABASE_URL = os.getenv(
     "DATABASE_URL", 
-    "postgresql://postgres:postgres@localhost:5432/url_shortener"
+    "postgresql://neondb_owner:npg_U4xZSOg9BFYc@ep-crimson-king-b5h0122t-pooler.c-7.us-east-2.aws.neon.tech/neondb?sslmode=require&channel_binding=require"
 )
 
 # 2. SQLAlchemy Engine (Manages database connection pool)
