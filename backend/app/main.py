@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from .database import engine, Base
-from .routers import shorten, redirect
+from .routers import shorten, redirect, analytics
 
 # Automatically create PostgreSQL tables if they don't exist yet
 Base.metadata.create_all(bind=engine)
@@ -14,6 +14,7 @@ app = FastAPI(
 # Include API Routers
 app.include_router(shorten.router)
 app.include_router(redirect.router)
+app.include_router(analytics.router)
 
 
 @app.get("/")
