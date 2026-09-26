@@ -40,3 +40,28 @@ The cache was brought into the picture using redis
 **Open Question:** 
 How does Redis manage memory eviction internally if maxmemory limit is reached before the 24-hour TTL expires?
 
+---
+
+## Day 3 — Build the Doorway (2026-09-26)
+
+**Built:** 
+Built the API endpoints and utility layers: Base62 encoding/decoding helper (`utils.py`), Pydantic schemas for request validation and response formatting (`schemas.py`), `POST /shorten` endpoint (`routers/shorten.py`), and `GET /r/{short_code}` redirect endpoint (`routers/redirect.py`).
+
+**Summary:**
+Day 3 summary
+this day was mainly undersanding how the FAST api works and building the same.
+I also lookd into the pydantic schemas which act as a bouncer, mainly helps us to check whether the information being fed is approppriate or not.
+I built the api post and get functions and also looked into the redirect component. Here i looked into the http redirect responses.
+there were two options - HTTP 307 or HTTP 301.
+I chosed HTTP 307 since it will help me to keep the accurate count of the number of visits.
+Also the software will throw a HTTP 404 error if the short limk does not exist
+
+**Learned:** 
+- Base62 algorithm uses `divmod(num, 62)` iteratively to pick characters from `0-9a-zA-A`.
+- Pydantic schemas validate types and prevent invalid or missing payloads from reaching PostgreSQL.
+- HTTP 307 Temporary Redirect is non-negotiable for analytics tracking because HTTP 301 Permanent Redirect causes browsers to cache redirects locally on disk, skipping future server hits.
+
+**Open Question:** 
+What happens if a high volume of concurrent users click a link while background click analytics are being recorded?
+
+
