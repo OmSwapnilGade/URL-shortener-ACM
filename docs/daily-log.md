@@ -64,4 +64,25 @@ Also the software will throw a HTTP 404 error if the short limk does not exist
 **Open Question:** 
 What happens if a high volume of concurrent users click a link while background click analytics are being recorded?
 
+---
+
+## Day 4 — Build the Diary (2026-09-26)
+
+**Built:** 
+Built the background click analytics service (`services/analytics.py`), integrated FastAPI `BackgroundTasks` into the redirect endpoint (`routers/redirect.py`), and created the analytics retrieval endpoint (`routers/analytics.py`).
+
+**Summary:**
+Day 4 was mainly aimed to develop analytics endpoints and background tasks to record all clicks passing through the server. It focused on asynchronous tasks, updating click and visit information without disturbing the user experience or delaying the HTTP 307 redirect response.
+The click information would be updated even when the link was used through the redis cache.
+Also we have put the limit of only recent 20 visits of a partivular website, this helps to avoid loading of the unncesseary data of all time.
+
+**Learned:** 
+- The Golden Rule: The human clicking your link must NEVER wait for a database write.
+- FastAPI `BackgroundTasks` allow non-blocking asynchronous execution after the HTTP response header has been sent.
+- Payload limiting (`.limit(20)`) keeps network payloads tiny (~2KB) and prevents memory exhaustion under high traffic.
+
+**Open Question:** 
+How do message queues like RabbitMQ or Kafka handle click analytics at massive scale (100,000+ clicks/sec) compared to in-memory BackgroundTasks?
+
+
 
