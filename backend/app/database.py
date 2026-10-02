@@ -1,11 +1,15 @@
 import os
+from dotenv import load_dotenv
 from sqlalchemy import create_engine
 from sqlalchemy.orm import declarative_base, sessionmaker
 
-# 1. Database Connection URL
+# Load environment variables from .env file if present
+load_dotenv()
+
+# 1. Database Connection URL (from .env or default local Postgres)
 DATABASE_URL = os.getenv(
     "DATABASE_URL", 
-    "postgresql://neondb_owner:npg_U4xZSOg9BFYc@ep-crimson-king-b5h0122t-pooler.c-7.us-east-2.aws.neon.tech/neondb?sslmode=require&channel_binding=require"
+    "postgresql://postgres:postgres@localhost:5432/url_shortener"
 )
 
 # 2. SQLAlchemy Engine (Manages database connection pool)
