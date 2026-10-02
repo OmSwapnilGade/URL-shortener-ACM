@@ -53,8 +53,8 @@ this day was mainly undersanding how the FAST api works and building the same.
 I also lookd into the pydantic schemas which act as a bouncer, mainly helps us to check whether the information being fed is approppriate or not.
 I built the api post and get functions and also looked into the redirect component. Here i looked into the http redirect responses.
 there were two options - HTTP 307 or HTTP 301.
-I chosed HTTP 307 since it will help me to keep the accurate count of the number of visits.
-Also the software will throw a HTTP 404 error if the short limk does not exist
+I chose HTTP 307 since it will help me to keep the accurate count of the number of visits.
+Also the software will throw a HTTP 404 error if the short link does not exist
 
 **Learned:** 
 - Base62 algorithm uses `divmod(num, 62)` iteratively to pick characters from `0-9a-zA-A`.
