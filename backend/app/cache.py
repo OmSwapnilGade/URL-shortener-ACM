@@ -1,7 +1,11 @@
 import os
 import redis
+from dotenv import load_dotenv
 
-# 1. Redis Connection URL (defaulting to local Redis port 6379)
+# Load environment variables from .env file if present
+load_dotenv()
+
+# 1. Redis Connection URL (from .env or default local Redis)
 REDIS_URL = os.getenv("REDIS_URL", "redis://localhost:6379/0")
 
 # 2. Redis Client Instance (decode_responses=True returns strings instead of raw bytes)
